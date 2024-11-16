@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Explore Thailand</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3531;
+            background-color: #c6c6c6;
+            line-height: 1.6;
+        }
+        header {
+             font-family: 'iBrand', sans-serif;/* Changed to Montserrat */
+             background: rgba(17, 100, 102, 0.8);
+             color: #d9b08c;
+             padding: 20px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             position: sticky;
+             top: 0;
+             z-index: 1000;
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+             transition: background 0.3s;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column ;
+            align-items: center ;
+        }
+        .menu-overlay nav a {
+            color: #116466;
+            font-size: 1.2em; /* Made smaller */
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(179, 201, 201, 0.2);
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2016/11/14/03/29/grand-palace-1822487_1280.jpg') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #d1e8e2;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color: rgba(217,176,140, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background:  rgba(250, 204, 164, 0.8);
+        }
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #b3c9c9;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .destinations, .offers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .destination{
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            height : 390px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .offer {
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
+            justify-content: space-between; /* Space between items */
+            height: 480px; /* Set a fixed height */
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px; /* Fixed width for consistency */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination img {
+            border-radius: 10px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .offer img {
+            width: 100%;
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Maintain aspect ratio */
+            border-radius: 10px;
+            margin-bottom: 15px; /* Space between image and text */
+        }
+
+        .destination h3, .offer h3  {
+            margin: 15px 0 5px;
+            color: #313734;
+            font-size: 1.5em;
+        }
+        .destination p, .offer p  {
+            color: #666;
+        }
+        .destination:hover, .offer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+       
+        .detalii-button {
+            margin-top: auto; /* Push button to the bottom */
+            background-color: rgba(217,176,140, 0.8);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .testimonial-container, .activity-container, .gallery-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .testimonial, .activity, .gallery {
+            display: none;
+            text-align: center;
+        }
+        .testimonial.active, .activity.active, .gallery.active {
+            display: block;
+        }
+        .prev, .next {
+            background: transparent;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #313734;
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        .popular-activities {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .activity img, .gallery img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .activity h3, .gallery h3 {
+            margin: 10px 0;
+            color: #313734;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .cta-button {
+                font-size: 1.2em;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .destinations {
+                flex-direction: column;
+                align-items: center;
+            }
+            .destination {
+                width: 90%;
+            }
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .social-icon img {
+            width: 30px; /* Adjust icon size */
+            height: 30px; /* Adjust icon size */
+        }
+        .intro-text {
+            font-family: 'Georgia', serif; /* Use a premium font */
+            font-size: 18px; /* Adjust size for readability */
+            line-height: 1.6; /* Improve spacing between lines */
+            color: #333; /* Darker color for better contrast */
+            margin: 20px 0; /* Add some space around the text */
+        }
+    </style>
+</head>
+
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="menu-overlay" id="menuOverlay">
+       
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="Services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">Rezerva acum</a>
+            <a href="offers.html">Oferte</a>
+        </nav>
+    </div>
+    
+    <div class="hero">
+        <h1>Exploreaza Thailanda cu noi!</h1>
+        <a href="Booking.html" class="cta-button">Rezerva acum</a>
+    </div>
+    
+    <div class="section">
+        <h2>Destinatii populare</h2>
+        <div class="destinations">
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2017/08/29/12/03/asia-2693042_1280.jpg" alt="Bangkok">
+                <h3>Bangkok</h3>
+                <p>Experimenteaza un oras care modernul cu cultura</p>
+                <a href="Bangkok.html" class="cta-button">Descopera</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2017/04/12/11/05/rice-terraces-2224264_1280.jpg" alt="Chiang Mai">
+                <h3>Chiang Mai</h3>
+                <p>Exploreaza un oras montan plin de natura si cultura</p>
+                <a href="Chiangmai.html" class="cta-button">Descopera</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2016/06/12/03/48/thailand-1451382_1280.jpg" alt="Phuket">
+                <h3>Phuket</h3>
+                <p>Relaxeaza-te pe plaja pe timp de zi si distreaza-te pe timp de noapte</p>
+                <a href="Phuket.html" class="cta-button">Descopera</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.pexels.com/photos/16140958/pexels-photo-16140958/free-photo-of-trace-behind-a-ship-under-thailand-flag.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Explore Other Cities">
+                <h3>Incearca alte orase</h3>
+                <p>Descopera si alte orase oferite de Thailanda</p>
+                <a href="destinations.html" class="cta-button">Descopera</a>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Oferte Speciale</h2>
+        <p class="intro-text">
+            Acestea sunt doar câteva dintre ofertele noastre special concepute pentru tine. 
+            Pentru o vacanță personalizată, te invităm să ne contactezi. 
+            Echipa noastră este gata să creeze experiența perfectă pentru tine!
+        </p>
+        <div class="offers-container">
+            <div class="offer">
+                <img src="https://cdn.pixabay.com/photo/2013/11/19/09/35/glasses-213156_1280.jpg" alt="Honeymoon">
+                <h3>Luna de miere</h3>
+                <p>Oferim pachete romantice în cele mai frumoase locații din Thailanda.</p>
+                <a href="honeymoon.html" class="detalii-button">Detalii</a>
+            </div>
+            <div class="offer">
+                <img src="https://cdn.pixabay.com/photo/2017/07/25/14/48/phi-phi-islands-2538412_1280.jpg" alt="Adventure Tour">
+                <h3>Bangkok + Phuket + Phi Phi Islands (11 zile) </h3>
+                <p>Descoperă cultura si natura Thailandezeaca</p>
+                <a href="Vacanta1.html" class="detalii-button">Detalii</a>
+            </div>
+            <div class="offer">
+                <img src="https://cdn.pixabay.com/photo/2016/09/18/23/48/chiang-mai-1679325_1280.jpg" alt="Culinary Tour">
+                <h3>Bangkok + Chiang Mai + Chiang Rai (10 zile)</h3>
+                <p>Explorati Bangkok-ul vibrant, templele antice din Chiang Mai si peisajele din Chiang Rai</p>
+                <a href="Vacanta2.html" class="detalii-button">Detalii</a>
+            </div>
+            <div class="offer">
+                <img src="https://cdn.pixabay.com/photo/2016/03/30/02/21/idea-1289876_1280.jpg" alt="Wellness Retreat">
+                <h3>Vezi alte oferte oferite de noi!</h3>
+                <p>Exploreaza toate ofertele, sau creaza-ti propia experienta.</p>
+                <a href="offers.html" class="detalii-button">Detalii</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Activitati populare</h2>
+        <div class="activity-container">
+            <div class="activity active">
+                <img src="https://ik.imagekit.io/tvlk/xpe-asset/AyJ40ZAo1DOyPyKLZ9c3RGQHTP2oT4ZXW+QmPVVkFQiXFSv42UaHGzSmaSzQ8DO5QIbWPZuF+VkYVRk6gh-Vg4ECbfuQRQ4pHjWJ5Rmbtkk=/6611109342083/Three-Miracle-Islands-with-Water-Sports-Activities-in-Pattaya-Thailand-e5743757-20f3-4ff6-9659-45c01029c8de.jpeg?tr=q-60,c-at_max,w-1280,h-720&_src=imagekit" alt="Beach Activities">
+                <h3>Activitati acvatice</h3>
+            </div>
+            <div class="activity">
+                <img src="https://cdn.pixabay.com/photo/2022/06/27/00/00/thailand-7286471_1280.jpg">
+                <h3>Activitati culturale</h3>
+            </div>
+            <div class="activity">
+                <img src="https://cdn.pixabay.com/photo/2021/07/04/13/23/green-curry-6386360_1280.jpg" alt="Food Tours">
+                <h3>Activitati culinare</h3>
+            </div>
+            <div class="activity">
+                <img src="https://images.pexels.com/photos/601175/pexels-photo-601175.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Activitati montane">
+                <h3>Activitati montane</h3>
+            </div>
+            <button class="prev" onclick="showActivity(-1)">❮</button>
+            <button class="next" onclick="showActivity(1)">❯</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Thailand Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery active">
+                <img src="https://cdn.pixabay.com/photo/2020/02/16/07/55/beach-4852830_1280.jpg" alt="Gallery Image 1">
+                <h3>Plaje speciale</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://cdn.pixabay.com/photo/2016/02/11/13/47/wat-phra-that-choeng-chum-1193569_1280.jpg" alt="Gallery Image 2">
+                <h3>Temple deosebite</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://cdn.pixabay.com/photo/2015/10/15/15/41/lishui-989526_1280.jpg" alt="Gallery Image 3">
+                <h3>Festivale locale</h3>
+            </div>
+            <button class="prev" onclick="showGallery(-1)">❮</button>
+            <button class="next" onclick="showGallery(1)">❯</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Testimoniale</h2>
+        <div class="testimonial-container">
+            <div class="testimonial active">
+                <p>
+                    <img src="https://www.andreearaicu.ro/wp-content/uploads/2023/03/beautiful-model-sitting-armchair-waving-hair-scaled-e1678441697982.jpg" alt="Francisca Filip" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;"> 
+                    "Cea mai frumoasa vacanta. Totul a fost bine planuit si experienta a fost de neuitat. Abia astept sa revin" 
+                    <br>- Francisca Filip.
+                </p>
+            </div>
+            <div class="testimonial">
+                <p>
+                    <img src="https://i.imgur.com/4n5UNCz.jpeg" alt="Tofan Alexandra" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;"> 
+                    "Vacanta a fost incredibila, iar serviciile oferite au fost exact ce trebuie! O experienta care merita, cu siguranta o sa ne intoarcem." 
+                    <br>- Alexandra T.
+                </p>
+            </div>
+            <div class="testimonial">
+                <p>
+                    <img src="https://i.imgur.com/8hjiNS2.jpeg" alt="Denis" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;"> 
+                    "Super vacanta! Am incercat atat cultura Thailandezeasca cat si distractia oferita de Bangkok. Serviciile au fost nemaipomenita. Recomand Trasia !!" 
+                    <br>- Denisa A.
+                </p>
+            </div>
+            <button class="prev" onclick="showTestimonial(-1)">❮</button>
+            <button class="next" onclick="showTestimonial(1)">❯</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+    <script>
+        let currentTestimonialIndex = 0;
+        let currentActivityIndex = 0;
+        let currentGalleryIndex = 0;
+
+        function showTestimonial(direction) {
+            const testimonials = document.querySelectorAll('.testimonial');
+            testimonials[currentTestimonialIndex].classList.remove('active');
+
+            currentTestimonialIndex += direction;
+
+            if (currentTestimonialIndex < 0) {
+                currentTestimonialIndex = testimonials.length - 1;
+            } else if (currentTestimonialIndex >= testimonials.length) {
+                currentTestimonialIndex = 0;
+            }
+
+            testimonials[currentTestimonialIndex].classList.add('active');
+        }
+
+        function showActivity(direction) {
+            const activities = document.querySelectorAll('.activity');
+            activities[currentActivityIndex].classList.remove('active');
+
+            currentActivityIndex += direction;
+
+            if (currentActivityIndex < 0) {
+                currentActivityIndex = activities.length - 1;
+            } else if (currentActivityIndex >= activities.length) {
+                currentActivityIndex = 0;
+            }
+
+            activities[currentActivityIndex].classList.add('active');
+        }
+
+        function showGallery(direction) {
+            const galleries = document.querySelectorAll('.gallery');
+            galleries[currentGalleryIndex].classList.remove('active');
+
+            currentGalleryIndex += direction;
+
+            if (currentGalleryIndex < 0) {
+                currentGalleryIndex = galleries.length - 1;
+            } else if (currentGalleryIndex >= galleries.length) {
+                currentGalleryIndex = 0;
+            }
+
+            galleries[currentGalleryIndex].classList.add('active');
+        }
+
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+        function fadeIn() {
+            document.querySelector('.hero').style.opacity = 1;
+        }
+    </script>
+</body>
+</html>

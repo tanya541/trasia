@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="stylecity.css"> <!-- Link to external CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Baker Street', cursive;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .menu {
+            display: flex; /* Always show menu on larger screens */
+            flex-direction: row;
+            align-items: center;
+            background-color: transparent; /* Ensure the menu has no background */
+            margin: 0; /* Remove any margin */
+            padding: 0; /* Remove any padding */
+            list-style-type: none; /* Remove bullets */
+        }
+        .menu a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .hamburger {
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            font-size: 30px;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none; /* Hide menu on mobile */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute; /* Position menu below hamburger */
+                top: 50px; /* Adjust as needed */
+                background-color: white;
+                width: 100%;
+            }
+            .hamburger {
+                display: block; /* Show hamburger icon on mobile */
+            }
+        }
+        .activity-container {
+            position: relative;
+        }
+        .activity {
+            display: none;
+            position: relative;
+        }
+        .activity.active {
+            display: block;
+        }
+        .activity h3 {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            padding: 5px 10px;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        img {
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin: auto;
+            transition: opacity 0.5s;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 60%;
+            max-height: 60%;
+            border-radius: 10px;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Baker+Street&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <nav class="menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="Services.html">Services</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">BOOK NOW</a>
+        </nav>
+    </header>
+    
+    <div class="hero Phangngabay">
+        <h2>Phang Nga Bay</h2>
+    </div>
+    
+    <div class="content">
+        <h3>Despre Oras</h3>
+        <p>Pattaya este o destinație vibrantă pe coasta de est a Thailandei, cunoscută pentru atmosfera sa cosmopolită. Orașul oferă o combinație unică de viață de noapte animată, restaurante diverse și cultură locală. Plajele sale atrăgătoare și comunitatea internațională creează un mediu prietenos pentru turiști.</p>
+        
+        <h3>Atractii</h3>
+        <p>Pattaya oferă o varietate de atracții captivante. Poți explora plajele frumoase, vizita templul Sanctuarul Adevărului, sau savura o zi la Nong Nooch Tropical Garden. Parcurile de distracții, cum ar fi Cartoon Network Amazone, și viața de noapte vibrantă completează oferta pentru turiști, asigurând distracție pentru toate gusturile. </p>
+        
+        <h3>Cultura locala</h3>
+        <p>Cultura locală din Pattaya este un amestec vibrant de tradiții thailandeze și influențe internaționale. Vizitatorii pot explora templele, cum ar fi Wat Phra Yai, și pot participa la festivaluri locale, care reflectă tradițiile budiste. Gastronomia locală, cu preparate autentice servite în piețele stradale, oferă o experiență culinară de neuitat. De asemenea, interacțiunea cu localnicii, care sunt prietenoși și deschiși, îmbogățește experiența culturală. Artizanatul tradițional, precum țesutul și sculptura, poate fi descoperit în magazinele locale, aducând un plus de autenticitate vizitei.</p>
+        
+        <div class="section">
+            <h2 class="header">Activitati populare</h2>
+            <div class="activity-container">
+                <div class="activity active">
+                    <img src="https://images.unsplash.com/photo-1642405924315-725846b59e74?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGF0dGF5YSUyMGJlYWNofGVufDB8MHwwfHx8MA%3D%3D" alt="Beach Activities">
+                    <h3>Activitati pe plaja</h3>
+                </div>
+                <div class="activity">
+                    <img src="https://images.unsplash.com/photo-1644902617098-45abe72a7445?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FuY3R1YXJ5JTIwb2YlMjB0cnV0aHxlbnwwfDB8MHx8fDA%3D" alt="Elephant Riding">
+                    <h3>Vizitarea templelor</h3>
+                </div>
+                <div class="activity">
+                    <img src="https://images.unsplash.com/photo-1538114618364-ae7f63d1ee7d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2Fsa2luZyUyMHN0cmVldCUyMHBhdHRheWF8ZW58MHwwfDB8fHww" alt="Food Tours">
+                    <h3>Expermientarea vietii de noapte</h3>
+                </div>
+                <button class="arrow prev" onclick="showActivity(-1)">❮</button>
+                <button class="arrow next" onclick="showActivity(1)">❯</button>
+            </div>
+        </div>
+    
+        <h3 class="header">Gallery</h3>
+        <div class="slideshow-container">
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2017/10/06/11/06/nong-nooch-tropical-garden-2822705_1280.jpg" alt="Attraction 1" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2021/01/25/15/11/temple-5948598_1280.jpg" alt="Attraction 2" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2023/02/18/13/39/highway-7797953_1280.jpg" alt="Attraction 3" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/4037038/pexels-photo-4037038.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Attraction 4" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/2983756/pexels-photo-2983756.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Attraction 5" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/20994435/pexels-photo-20994435/free-photo-of-khao-chi-chan-buddha-mountain-in-na-chom-thian.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Attraction 6" onclick="openModal(this.src)">
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Modal Image">
+    </div>
+
+    <footer>
+        <p>Contact us: Trasiaagency@gmail.com | +40727300463</p>
+        <p>&copy; 2024 Trasia Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        let currentActivityIndex = 0;
+
+        showSlides();
+
+        function showSlides() {
+            const slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById("navMenu");
+            menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+        }
+
+        function openModal(src) {
+            document.getElementById("modalImage").src = src;
+            document.getElementById("myModal").style.display = "flex"; 
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onload = function() {
+            closeModal();
+        };
+
+        function showActivity(direction) {
+            const activities = document.querySelectorAll('.activity');
+            activities[currentActivityIndex].classList.remove('active');
+
+            currentActivityIndex += direction;
+
+            if (currentActivityIndex < 0) {
+                currentActivityIndex = activities.length - 1;
+            } else if (currentActivityIndex >= activities.length) {
+                currentActivityIndex = 0;
+            }
+
+            activities[currentActivityIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

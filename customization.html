@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Customize Your Honeymoon</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3531;
+            background-color: #c6c6c6;
+            line-height: 1.6;
+        }
+        header {
+             font-family: 'iBrand', sans-serif;/* Changed to Montserrat */
+             background: rgba(17, 100, 102, 0.8);
+             color: #d9b08c;
+             padding: 20px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             position: sticky;
+             top: 0;
+             z-index: 1000;
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+             transition: background 0.3s;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column ;
+            align-items: center ;
+        }
+        .menu-overlay nav a {
+            color: #116466;
+            font-size: 1.2em; /* Made smaller */
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(179, 201, 201, 0.2);
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2017/09/02/15/20/thailand-2707555_1280.jpg') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color: rgba(217,176,140, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background:  rgba(250, 204, 164, 0.8);
+        }
+        .section {
+            padding: 20px;
+            text-align: center;
+            background-color: #b3c9c9;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .phone-container {
+            display: flex;
+            width: 105%;
+            gap: 10px;
+        }
+        .phone-container select {
+            flex: 0 0 30%; /* Fixed width for the prefix */
+        }
+        .currency-container {
+            display: flex;
+            width: 105%;
+            gap: 10px;
+        }
+        .currency-container select {
+            flex: 0 0 30%; /* Fixed width for the currency */
+        }
+        textarea {
+            width: 100%;
+            height: 100px; /* Set a fixed height */
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            resize: none; /* Prevent resizing */
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .social-icon img {
+            width: 30px; /* Adjust icon size */
+            height: 30px; /* Adjust icon size */
+        }
+    </style>
+</head>
+
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="booking.html">Rezerva acum</a>
+            <a href="offers.html">Oferte</a>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <h1>Customize Your Honeymoon</h1>
+        <a class="cta-button" href="#form">Start Customization</a>
+    </div>
+
+    <main>
+        <section id="form" class="section">
+            <h2>Tell Us Your Preferences</h2>
+            <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbwfMtZhGcIJWUCvjlmQBnwxh4hKu4oxAJdqSsvw4zgKJ6VlrOM4XaJs_vGzZWLVdAqB/exec" method="POST">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <div class="phone-container">
+                    <select id="countryCode" name="countryCode" required>
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+40">+40 (Romania)</option>
+                        <option value="+49">+49 (Germany)</option>
+                        <option value="+33">+33 (France)</option>
+                        <option value="+39">+39 (Italy)</option>
+                        <option value="+34">+34 (Spain)</option>
+                        <option value="+61">+61 (Australia)</option>
+                        <option value="+81">+81 (Japan)</option>
+                        <option value="+86">+86 (China)</option>
+                        <option value="+91">+91 (India)</option>
+                        <option value="+27">+27 (South Africa)</option>
+                        <option value="+55">+55 (Brazil)</option>
+                        <option value="+61">+61 (New Zealand)</option>
+                        <option value="+41">+41 (Switzerland)</option>
+                        <option value="+351">+351 (Portugal)</option>
+                        <option value="+46">+46 (Sweden)</option>
+                        <option value="+358">+358 (Finland)</option>
+                        <option value="+45">+45 (Denmark)</option>
+                        <option value="+47">+47 (Norway)</option>
+                        <option value="+353">+353 (Ireland)</option>
+                        <option value="+36">+36 (Hungary)</option>
+                        <option value="+420">+420 (Czech Republic)</option>
+                        <option value="+421">+421 (Slovakia)</option>
+                        <option value="+385">+385 (Croatia)</option>
+                        <option value="+381">+381 (Serbia)</option>
+                        <option value="+32">+32 (Belgium)</option>
+                        <option value="+31">+31 (Netherlands)</option>
+                        <option value="+372">+372 (Estonia)</option>
+                        <option value="+370">+370 (Lithuania)</option>
+                        <option value="+371">+371 (Latvia)</option>
+                        <option value="+30">+30 (Greece)</option>
+                        <option value="+994">+994 (Azerbaijan)</option>
+                        <option value="+7">+7 (Russia)</option>
+                        <option value="+996">+996 (Kyrgyzstan)</option>
+                        <option value="+998">+998 (Uzbekistan)</option>
+                        <option value="+63">+63 (Philippines)</option>
+                        <option value="+84">+84 (Vietnam)</option>
+                        <option value="+972">+972 (Israel)</option>
+                    </select>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="currency-container">
+                    <input type="number" id="budget" name="budget" placeholder="Enter your budget" required>
+                    <select id="currency" name="currency" required>
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="RON">RON</option>
+                    </select>
+                </div>
+                <input type="number" id="guests" name="guests" placeholder="Numar de oaspeti" required>
+
+                <textarea id="description" name="description" placeholder="Describe what you want from the holiday" required></textarea>
+                <button type="submit" class="cta-button">Submit Preferences</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+        function fadeIn() {
+            document.querySelector('.hero').style.opacity = 1;
+        }
+
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="stylecity.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="Services.html">Services</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <div class="hero">
+        <h2>Sukhothai</h2>
+    </div>
+    
+    <div class="content">
+        <h3>About the City</h3>
+        <p>Bangkok, Thailand's vibrant capital, offers a captivating blend of tradition and modernity. Visitors can explore stunning temples like Wat Pho and Wat Arun, each showcasing intricate architecture and rich history. The bustling markets, such as Chatuchak Weekend Market, provide a feast for the senses with local crafts, delicious street food, and lively atmosphere. Don’t miss a boat ride along the Chao Phraya River for a unique view of the city. Enjoy the vibrant nightlife in areas like Khao San Road and indulge in traditional Thai cuisine at local eateries. With its warm culture and endless attractions, Bangkok is a must-visit destination.</p>
+        
+        <h3>Must-See Attractions</h3>
+        <p>From iconic landmarks to hidden gems, explore the best that the city has to offer. Don’t miss the famous museum, historic district, and lively marketplaces!</p>
+        
+        <h3>Experience the Local Culture</h3>
+        <p>Immerse yourself in the local culture by trying traditional dishes, attending festivals, and exploring the art scene. The city comes alive with unique experiences waiting to be discovered.</p>
+        
+        <h3>Gallery</h3>
+        <div class="gallery">
+            <img src="https://www.brusselsairlines.com/aircore/cache/images/67686/eyJpZGVudGlmaWVyIjoxMTc3NywidHlwZSI6ImFzc2V0In0=_1.webp" alt="Attraction 1" onclick="openModal(this.src)">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTvZP3TVnR-SJrWzWqCrTU7pPCct8evN6O8IH2HLyI8MRsENmAzfkV1q7pKaGzQVuCduw&usqp=CAU" alt="Attraction 2" onclick="openModal(this.src)">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-mvki1Dpe0M5wmzeYOwM6CPZl4G-006DZfxMdIZDuySamDusZ6kqLoSpBII-_D1VXA4&usqp=CAU" alt="Attraction 3" onclick="openModal(this.src)">
+            <img src="https://www.traveloffpath.com/wp-content/uploads/2022/06/Amazing-view-of-the-city-of-Bangkok-Thailand.jpg" alt="Attraction 4" onclick="openModal(this.src)">
+            <img src="https://media.nomadicmatt.com/2023/bangkokskyline.jpg" alt="Attraction 5" onclick="openModal(this.src)">
+            <img src="https://www.holidify.com/images/bgImages/BANGKOK%20.jpg" alt="Attraction 6" onclick="openModal(this.src)">
+        </div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Modal Image">
+    </div>
+
+    <footer>
+        <p>Contact us: Trasiaagency@gmail.com | +40727300463</p>
+        <p>&copy; 2024 Trasia Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openModal(src) {
+            document.getElementById("modalImage").src = src;
+            document.getElementById("myModal").style.display = "flex"; // Use flex to center the image
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Ensure the modal is closed on page load
+        window.onload = function() {
+            closeModal();
+        };
+    </script>
+
+</body>
+</html>

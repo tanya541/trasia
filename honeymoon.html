@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Explore Thailand</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3531;;
+            background-color: #c6c6c6;
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(17, 100, 102, 0.8);
+            color: #d9b08c;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color:  #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2017/09/02/15/20/thailand-2707555_1280.jpg') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #d1e8e2;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color:rgba(217,176,140, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background:  rgba(250, 204, 164, 0.8);
+        }
+        .section {
+            padding: 20px;
+            text-align: center;
+            background-color: #b3c9c9; 
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .destinations {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .destination {
+            background-color:  #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            width: 90%;
+            
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .destination img {
+            border-radius: 10px;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .destination h3 {
+            margin: 10px 0 5px;
+            color: #2c2c2c;
+            font-size: 1.2em;
+        }
+        .destination p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .section h2{
+            color:#d9b08c;
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        .testimonial-container, .gallery-container {
+            max-width: 90%;
+            margin: 10px auto;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .testimonial, .gallery {
+            display: none;
+            text-align: center;
+          
+        }
+        .testimonial.active, .gallery.active {
+            display: block;
+        }
+        .prev, .next {
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #d9b08c;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .menu-overlay nav a {
+            color: #ffffff;
+            font-size: 1.2em; /* Made smaller */
+            margin: 15px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .cta-button {
+                font-size: 0.9em;
+            }
+            .destination h3 {
+                font-size: 1.1em;
+            }
+            .destination p {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="Services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">Rezerva acum</a>
+            <a href="Offers.html">Oferte</a>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <h1>Your Dream Honeymoon Awaits!</h1>
+        <a class="cta-button" href="#offers">Explore Offers</a>
+    </div>
+
+    <main>
+        <section id="reasons" class="section">
+            <h2>Why Honeymoon in Thailand?</h2>
+            <div class="destinations">
+                <div class="destination">
+                    <h3>Stunning Beaches</h3>
+                    <p>Beautiful sunsets and enchanting islands.</p>
+                </div>
+                <div class="destination">
+                    <h3>Cultural Richness</h3>
+                    <p>Rich traditions and ancient temples.</p>
+                </div>
+                <div class="destination">
+                    <h3>Exquisite Cuisine</h3>
+                    <p>Indulge in vibrant Thai delicacies.</p>
+                </div>
+                <div class="destination">
+                    <h3>Luxurious Accommodations</h3>
+                    <p>Romantic resorts tailored for relaxation.</p>
+                </div>
+                <div class="destination">
+                    <h3>Unique Experiences</h3>
+                    <p>Cooking classes and elephant sanctuaries.</p>
+                </div>
+                <div class="destination">
+                    <h3>Vibrant Nightlife</h3>
+                    <p>Lively bars and clubs in Bangkok.</p>
+                </div>
+                <div class="destination">
+                    <h3>Affordability</h3>
+                    <p>Luxury at a fraction of the cost.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="Offers" class="section">
+            <h2>Exclusive Offers</h2>
+            <div class="destinations">
+                <div class="destination">
+                    <img src="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Beach Package">
+                    <h3>Beach Getaway</h3>
+                    <p>5 nights in Koh Samui + Spa Package</p>
+                    <a href="hmoon1.html" class="cta-button">Descopera</a>
+                </div>
+                <div class="destination">
+                    <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Cultural Package">
+                    <h3>Cultural Experience</h3>
+                    <p>7 days in Chiang Mai + Local Tours</p>
+                    <a href="hmoon2.html" class="cta-button">Descopera</a>
+                </div>
+                <div class="destination">
+                    <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Adventure Package">
+                    <h3>Adventure Package</h3>
+                    <p>Island Hopping Tour + Activities</p>
+                    <a href="hmoon3.html" class="cta-button">Descopera</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery active">
+                <img src="https://cdn.pixabay.com/photo/2015/01/05/15/51/thailand-588323_1280.jpg" alt="Gallery Image 1">
+                <h3>Beautiful Sunset</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Gallery Image 2">
+                <h3>Serene Beach</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://cdn.pixabay.com/photo/2015/01/05/15/51/thailand-588323_1280.jpg" alt="Gallery Image 3">
+                <h3>Vibrant Market</h3>
+            </div>
+            <button class="prev" onclick="showGallery(-1)">❮</button>
+            <button class="next" onclick="showGallery(1)">❯</button>
+        </section>
+        <section id="Rezerva Acum!" class="section">
+            <h2>Rezerva acum!</h2>
+            <p>Fa primul pas catre cea mai speciala vacanta!</p>
+            <a href="Booking.html" class="cta-button">Rezerva Acum!</a> <!-- Change "customization.html" to your desired page -->
+        </section>  
+        <section id="customization" class="section">
+            <h2>Customize Your Honeymoon</h2>
+            <p>Tell us what you're dreaming of! We can tailor your package to make it even more special.</p>
+            <a href="customization.html" class="cta-button">Start Customization</a> <!-- Change "customization.html" to your desired page -->
+        </section>        
+    </main>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <p>Contact: +40727300463</p>
+    </footer>
+
+    <script>
+        let currentTestimonialIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const galleries = document.querySelectorAll('.gallery');
+
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+        function fadeIn() {
+            document.querySelector('.hero').style.opacity = 1;
+        }
+
+        function showTestimonial(n) {
+            testimonials[currentTestimonialIndex].classList.remove('active');
+            currentTestimonialIndex = (currentTestimonialIndex + n + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonialIndex].classList.add('active');
+        }
+
+        let currentGalleryIndex = 0;
+
+        function showGallery(n) {
+            galleries[currentGalleryIndex].classList.remove('active');
+            currentGalleryIndex = (currentGalleryIndex + n + galleries.length) % galleries.length;
+            galleries[currentGalleryIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>

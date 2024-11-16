@@ -1,0 +1,56 @@
+.header {
+    background-color: rgba(114, 255, 229, 0.9); /* Semi-transparent background */
+    padding: 10px;
+}
+
+.menu {
+    display: flex; /* Always show menu on larger screens */
+    flex-direction: row;
+    align-items: center;
+}
+
+.menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.8); /* Light background on hover */
+    color: #333; /* Darker text color */
+}
+
+.hamburger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+    font-size: 30px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: none; /* Hide menu on mobile */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute; /* Position menu below hamburger */
+        top: 50px; /* Adjust as needed */
+        left: 0; /* Align to the left */
+        background-color: white; /* White background for visibility */
+        width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        z-index: 10; /* Ensure it sits above other content */
+        transition: max-height 0.3s ease; /* Smooth transition */
+        max-height: 0; /* Initially hidden */
+        overflow: hidden; /* Prevent overflow */
+    }
+    .menu.active {
+        display: flex; /* Show the menu */
+        max-height: 500px; /* Arbitrary height for transition effect */
+    }
+    .hamburger {
+        display: block; /* Show hamburger icon on mobile */
+    }
+}

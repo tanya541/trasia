@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Destinations</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #e0e0e0;
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(17, 100, 102, 0.8);
+            color: #d9b08c;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column ;
+            align-items: center ;
+        }
+        .menu-overlay nav a {
+            color: #116466;
+            font-size: 1.2em; /* Made smaller */
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(179, 201, 201, 0.2);
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2016/11/02/16/02/natural-1792047_1280.jpg') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color: rgba(217,176,140, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background: rgba(217,176,140, 0.8);
+        }
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #b3c9c9;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .destinations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .destination {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .destination img {
+            border-radius: 10px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .destination h3 {
+            margin: 15px 0 5px;
+            color: #116466;
+            font-size: 1.5em;
+        }
+        .destination p {
+            color: #666;
+        }
+        .destination:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+        .social-icon {
+            margin: 0 10px;
+        }
+        .social-icon img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    </header>
+    
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="booking.html">Rezerva acum</a>
+            <a href="offers.html">Oferte</a>
+        </nav>
+    </div>
+    
+    <div class="hero">
+        <h1>Explorează Thailanda cu noi!</h1>
+        <a href="booking.html" class="cta-button">Rezerva acum</a>
+    </div>
+    
+    <div class="section">
+        <h2>Destinații populare</h2>
+        <div class="destinations">
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2017/08/29/12/03/asia-2693042_1280.jpg" alt="Bangkok">
+                <h3>Bangkok</h3>
+                <p>Experimentează un oraș care îmbină modernul cu cultura.</p>
+                <a href="Bangkok.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.pexels.com/photos/26841784/pexels-photo-26841784/free-photo-of-guan-yin-statue-at-wat-huay-pla-kang-buddhist-temple-in-chiang-rai-thailand.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Chiang Rai">
+                <h3>Chiang Rai</h3>
+                <p>Explorează un oraș montan plin de natură și cultură.</p>
+                <a href="ChiangRai.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2017/04/12/11/05/rice-terraces-2224264_1280.jpg" alt="Chiang Mai">
+                <h3>Chiang Mai</h3>
+                <p>Explorează un oraș montan plin de natură și cultură.</p>
+                <a href="Chiangmai.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2016/06/12/03/48/thailand-1451382_1280.jpg" alt="Phuket">
+                <h3>Phuket</h3>
+                <p>Relaxează-te pe plajă pe timp de zi și distrează-te pe timp de noapte.</p>
+                <a href="Phuket.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2018/07/30/19/16/beach-3573351_1280.jpg" alt="Krabi">
+                <h3>Krabi</h3>
+                <p>Descoperă plajele și peisajele spectaculoase.</p>
+                <a href="krabi.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2020/08/04/14/51/pattaya-5463040_1280.jpg" alt="Pattaya">
+                <h3>Pattaya</h3>
+                <p>Un loc plin de viață și distracție.</p>
+                <a href="pattaya.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2018/03/23/06/21/hua-hin-3252770_1280.jpg" alt="Ayutthaya">
+                <h3>Hua Hin</h3>
+                <p>Un loc plin de istorie și ruine vechi.</p>
+                <a href="huahin.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2018/01/27/12/16/kho-samui-3111068_1280.jpg" alt="Koh Samui">
+                <h3>Koh Samui</h3>
+                <p>Insulă paradisiacă pentru relaxare.</p>
+                <a href="kohsamui.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.pexels.com/photos/4091042/pexels-photo-4091042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Sukhothai">
+                <h3>Khao Lak</h3>
+                <p>Un loc de patrimoniu mondial plin de cultură.</p>
+                <a href="Khaolak.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2018/02/26/05/21/waterfall-3182326_1280.jpg" alt="Kanchanaburi">
+                <h3>Kanchanaburi</h3>
+                <p>Cunoscută pentru podul de pe râul Kwai.</p>
+                <a href="kanchanaburi.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://cdn.pixabay.com/photo/2017/07/01/10/44/khao-sok-2461179_1280.jpg" alt="Nakhon Ratchasima">
+                <h3>Khao Sok</h3>
+                <p>O destinație perfectă pentru aventură în natură.</p>
+                <a href="Khaosok.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.pexels.com/photos/8077406/pexels-photo-8077406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Samut Prakan">
+                <h3>Koh Chang</h3>
+                <p>Cunoscută pentru Parcul de viață sălbatică.</p>
+                <a href="Kohchang.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.unsplash.com/photo-1579554632071-cffdaad3738c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trang">
+                <h3>Koh Phangan</h3>
+                <p>Un loc mai puțin cunoscut dar la fel de frumos.</p>
+                <a href="Kohphangan.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.unsplash.com/photo-1558983925-819e859f3c70?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trang">
+                <h3>Koh Phi Phi</h3>
+                <p>Un loc mai puțin cunoscut dar la fel de frumos.</p>
+                <a href="phiphi.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.unsplash.com/photo-1715356747228-0b7261d5083c?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trang">
+                <h3>Koh Tao</h3>
+                <p>Un loc mai puțin cunoscut dar la fel de frumos.</p>
+                <a href="Kohtao.html" class="cta-button">Descoperă</a>
+            </div>
+            <div class="destination">
+                <img src="https://images.unsplash.com/photo-1642391326176-cf6e4ff39f4e?q=80&w=1812&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trang">
+                <h3>Khao Yai</h3>
+                <p>Un loc mai puțin cunoscut dar la fel de frumos.</p>
+                <a href="Khaoyai.html" class="cta-button">Descoperă</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

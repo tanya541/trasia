@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="stylecity.css"> <!-- Link to external CSS file -->
+    <style>
+       body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3531;
+            background-color: #c6c6c6;
+            line-height: 1.6;
+        }
+        header {
+             font-family: 'iBrand', sans-serif;/* Changed to Montserrat */
+             background: rgba(17, 100, 102, 0.8);
+             color: #d9b08c;
+             padding: 20px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             position: sticky;
+             top: 0;
+             z-index: 1000;
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+             transition: background 0.3s;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column ;
+            align-items: center ;
+        }
+        .menu-overlay nav a {
+            color: #116466;
+            font-size: 1.2em; /* Made smaller */
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(179, 201, 201, 0.2);
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .activity-container {
+            position: relative;
+            background-color: #e0e0e0;
+        }
+        .activity {
+            display: none;
+            position: relative;
+        }
+        .activity.active {
+            display: block;
+        }
+        .activity h3 {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e0e0e0;
+            padding: 5px 10px;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        img {
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin: auto;
+            transition: opacity 0.5s;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 60%;
+            max-height: 60%;
+            border-radius: 10px;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        .prev {
+            left: 10px;
+        }
+        .social-media {
+            margin-top: 10px;
+            display: flex;          /* Align items in a row */
+            justify-content: center; /* Center the icons horizontally */
+            gap: 15px;              /* Space between icons */
+        }
+
+
+
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .social-icon img {
+            width: 30px; /* Adjust icon size */
+            height: 30px; /* Adjust icon size */
+        }
+        .next {
+            right: 10px;
+        }
+        
+        
+    </style>
+    <link href="stylesheet" rel="stylesheet">
+</head>
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="menu-overlay" id="menuOverlay">
+       
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="Services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">Rezerva acum</a>
+            <a href="offers.html">Oferte</a>
+        </nav>
+    </div>
+    
+    <div class="hero krabi">
+        <h2>Krabi</h2>
+    </div>
+    
+    <div class="content">
+        <h3>Despre Oras</h3>
+        <p>Krabi, situată pe coasta de sud a Thailandei, este o destinație de vis, cunoscută pentru peisajele sale spectaculoase. Plajele cu nisip alb și ape turcoaz, precum Railay Beach și Ao Nang, atrag turiști din întreaga lume. Regiunea este împădurită, cu stânci calcaroase impresionante și insule pitorești, cum ar fi Koh Phi Phi. Cultura locală este vibrantă, cu temple frumoase și piețe pline de viață. Vizitatorii pot explora gastronomia thailandeză autentică și pot interacționa cu localnicii prietenoși. Krabi oferă un refugiu liniștit, unde natura și tradițiile se îmbină armonios, creând o experiență memorabilă.</p>
+        
+        <h3>Atractii</h3>
+        <p>>Krabi ofera atractii nenumarate. Cateva dintre acestea ar fii: Scuba Diving, drumetii prin natura, calaritul de elefanti, temple Budhiste cu arhitectura si istorie deosebita si multe altele.</p>
+        
+        <h3>Cultura locala</h3>
+        <p>Cultura din Bangkok îmbină tradiția cu modernitatea. Templul Wat Pho și piețele de noapte oferă o experiență autentică. Gastronomia locală, cu preparate precum pad thai și tom yum, încântă simțurile. Festivalurile, cum ar fi Songkran, aduc bucurie, iar arta și meșteșugurile reflectă creativitatea thailandeză vibrantă.</p>
+        <div class="section">
+            <h2 class="header">Popular Activities</h2>
+            <div class="activity-container">
+                <div class="activity active">
+                    <img src="https://cdn.pixabay.com/photo/2015/06/27/19/39/parasailing-823771_1280.jpg" alt="Beach Activities">
+                    <h3>Activitati pe plaja</h3>
+                </div>
+                <div class="activity">
+                    <img src="https://cdn.pixabay.com/photo/2019/03/01/21/31/thailand-4028725_1280.jpg" alt="Elephant Riding">
+                    <h3>Calaritul de elefanti</h3>
+                </div>
+                <div class="activity">
+                    <img src="https://cdn.pixabay.com/photo/2016/01/19/14/50/reef-1148995_1280.jpg" alt="Food Tours">
+                    <h3>Scuba Diving</h3>
+                </div>
+                <button class="arrow prev" onclick="showActivity(-1)">❮</button>
+                <button class="arrow next" onclick="showActivity(1)">❯</button>
+            </div>
+        </div>
+    
+        <h3 class="header">Gallery</h3>
+        <div class="slideshow-container">
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2019/10/08/19/40/thailand-4535904_1280.jpg" alt="Attraction 1" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2020/01/30/20/18/nature-4806454_1280.jpg" alt="Attraction 2" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2017/05/03/19/08/railay-bay-2281883_1280.jpg" alt="Attraction 3" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2020/03/21/00/18/thailand-4952349_1280.jpg" alt="Attraction 4" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2020/02/16/07/58/thailand-4852838_1280.jpg" alt="Attraction 5" onclick="openModal(this.src)">
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2022/01/02/22/35/nature-6911350_1280.jpg" alt="Attraction 6" onclick="openModal(this.src)">
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Modal Image">
+    </div>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+    <script>
+        
+        let slideIndex = 0;
+        let currentActivityIndex = 0;
+
+        showSlides();
+
+        function showSlides() {
+            const slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+
+        function openModal(src) {
+            document.getElementById("modalImage").src = src;
+            document.getElementById("myModal").style.display = "flex"; 
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onload = function() {
+            closeModal();
+        };
+
+        function showActivity(direction) {
+            const activities = document.querySelectorAll('.activity');
+            activities[currentActivityIndex].classList.remove('active');
+
+            currentActivityIndex += direction;
+
+            if (currentActivityIndex < 0) {
+                currentActivityIndex = activities.length - 1;
+            } else if (currentActivityIndex >= activities.length) {
+                currentActivityIndex = 0;
+            }
+
+            activities[currentActivityIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

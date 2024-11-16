@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Contact Us</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: rgba(179, 201, 201, 0.9);
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(17, 100, 102, 0.8);
+            color: #d9b08c;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none;
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .menu-overlay nav a {
+            color: rgba(17, 100, 102, 0.8);
+            font-size: 1.2em;
+            margin: 15px 0;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2017/09/02/15/20/thailand-2707555_1280.jpg') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #d9b08c;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color: rgba(114, 255, 229, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background: linear-gradient(to bottom, #cef9e7, #9eeece);
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .contact-section {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .contact-section h2 {
+            margin-bottom: 20px;
+            color:#d9b08c;
+        }
+        .contact-section p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .contact-form textarea {
+            height: 100px; /* Fixed height */
+            resize: none; /* Disable resizing */
+        }
+        .contact-form button {
+            background-color: #d9b08c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background-color: #d9b08c;
+        }
+        footer {
+            background:rgba(17, 100, 102, 0.8);
+            color: #d9b08c;
+            padding: 10px;
+            text-align: center;
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+        .social-icon {
+            margin: 0 10px;
+        }
+        .social-icon img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">Book Now</a>
+            <a href="offers.html">Offers</a>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <h1>Contact Us</h1>
+    </div>
+
+    <main>
+        <section class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>We would love to hear from you! Fill out the form below or reach us through our contact details.</p>
+            <form class="contact-form" action="https://script.google.com/macros/s/AKfycbziTYNKV1IjKGnOJ2wCK9uTGR-ilzYRfezkYGUPtkEq5dpBK5vr7ltjhlkcEZMeX5Y51A/exec" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Or reach us at: <strong>Trasiaagency@gmail.com</strong></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+        function fadeIn() {
+            document.querySelector('.hero').style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
