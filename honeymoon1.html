@@ -105,12 +105,12 @@
         .cta-button {
             background-color: rgba(217,176,140, 0.8);
             color: rgb(255, 255, 255);
-            padding: 10px 20px;
+            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1em;
+            border-radius: 10px;
+            font-size: 1.5em;
             transition: background 0.3s;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         .cta-button:hover {
             background-color: rgba(235, 198, 158, 0.8);
@@ -125,32 +125,35 @@
         }
         .destinations {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .destination {
-            background-color:#e0e0e0;
+            background-color: #e0e0e0;
             border-radius: 10px;
-            padding: 15px;
-            width: 90%;
+            padding: 20px;
+            width: 300px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .destination img {
             border-radius: 10px;
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
         }
         .destination h3 {
-            margin: 10px 0 5px;
-            color: #af894c;
-            font-size: 1.2em;
+            margin: 15px 0 5px;
+            color: #116466;
+            font-size: 1.5em;
         }
         .destination p {
             color: #666;
-            font-size: 0.9em;
+        }
+        .destination:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         footer {
             background:  rgba(17,100,102 , 0.8);
@@ -202,16 +205,19 @@
             <h2>De ce sa alegi aceasta oferta?</h2>
             <div class="destinations">
                 <div class="destination">
+                    <h3>Krabi</h3>
+                    <p>Krabi este locul perfect pentru o luna de miere, oferind plaje idilice cu nisip fin, ape cristalline si un peisaj montan spectaculos. Aici, cuplurile pot petrece momente de neuitat in intimitatea unor resorturi luxoase, savurand apusuri romantice si explorand golfuri ascunse. Atmosfera linistita si natura salbatica creeaza un cadru ideal pentru relaxare si aventuri in doi.</p>
+                    <a href="krabi.html" class="cta-button">Descoperă</a>
+                </div>
+                <div class="destination">
+                    <h3>Koh Yao Yai</h3>
+                    <p>Koh Yao Yai este o insula linistita, perfecta pentru o vacanta de relaxare. Aici, plajele izolate, ape cristaline si peisajele montane impresionante creeaza un cadru ideal pentru a te destinde. Fara aglomeratie, insula ofera un refugiu romantic, cu resorturi de lux, apusuri spectaculoase si oportunitati de a explora natura salbatica intr-un mediu seren.</p>
+                    <a href="kohyaoyai" class="cta-button">Descoperă</a>
+                </div>
+                <div class="destination">
                     <h3>Bangkok</h3>
-                    <p>Bangkok oferă o combinație unică de cultură vibrantă, gastronomie delicioasă, temple impresionante, viață de noapte animată și shopping diversificat.</p>
-                </div>
-                <div class="destination">
-                    <h3>Phuket</h3>
-                    <p>Phuket atrage turiști cu plajele sale idilice, viața de noapte vibrantă, o gamă variată de activități acvatice, restaurante excelente și cultură locală fascinantă.</p>
-                </div>
-                <div class="destination">
-                    <h3>Phi Phi Islands</h3>
-                    <p>Insulele Phi Phi sunt renumite pentru peisajele spectaculoase, plajele cu nisip alb, ape cristaline, activități de snorkeling și scuba diving, precum și atmosfera relaxată.</p>
+                    <p>Bangkok este un oras vibrant, unde traditia si modernitatea se intalnesc perfect. Aici, cuplurile pot explora temple istorice si palate regale, dar si sa se bucure de viata de noapte electrizanta si de restaurante rafinate. Atmosfera sa cosmopolita, alaturi de street food-ul delicios si atractiile culturale, face din Bangkok o destinatie unica, plina de energie si culoare.</p>
+                    <a href="Bangkok.html" class="cta-button">Descoperă</a>
                 </div>
             </div>
         </section>
@@ -220,19 +226,19 @@
             <h2>Exclusive Holiday Offers</h2>
             <div class="destinations">
                 <div class="destination">
-                    <img src="https://cdn.pixabay.com/photo/2017/08/30/02/18/phi-2691460_1280.jpg" alt="Bangkok Tour">
+                    <img src="https://images.pexels.com/photos/1031659/pexels-photo-1031659.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bangkok Tour">
                     <h3>Bangkok Highlights</h3>
                     <p>Sedere 3 nopti. </p>
                 </div>
                 <div class="destination">
-                    <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Phuket Getaway">
-                    <h3>Phuket Escape</h3>
-                    <p>Sedere 5 nopti.</p>
+                    <img src="https://images.unsplash.com/photo-1559732914-0dd83b4db96e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3JhYml8ZW58MHx8MHx8fDA%3D" alt="Phuket Getaway">
+                    <h3>Krabi Escape</h3>
+                    <p>Sedere 4 nopti.</p>
                 </div>
                 <div class="destination">
-                    <img src="https://cdn.pixabay.com/photo/2016/10/06/10/02/phi-1727036_1280.jpg" alt="Phi Phi Islands">
-                    <h3>Phi Phi Island Adventure</h3>
-                    <p>Sedere 2 nopti</p>
+                    <img src="https://images.unsplash.com/photo-1610605701646-e6eb2d296778?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Phi Phi Islands">
+                    <h3>Koh Yao Yai Adventure</h3>
+                    <p>Sedere 3 nopti</p>
                 </div>
                 
             </div>
@@ -241,44 +247,44 @@
         <section id="itinerary" class="section">
             <h2>Your Holiday Itinerary</h2>
             <p>Explore the best of Thailand over 10 days!</p>
-            <div class="itinerary-cards">
-                <div class="itinerary-card">
+            <div class="destinations">
+                <div class="destination">
                     <h3>Day 1</h3>
                     <p>Relaxare la hotel + plimbare si experimentare China Town.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 2</h3>
                     <p>Floating Market + Train Market + Dinner Cruise.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 3</h3>
                     <p>Explorarea templelor si a palatului regal + shopping.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 4</h3>
                     <p>Zbor catre Phuket + Relaxare la hotel + Masaj Thailandez.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 5</h3>
                     <p>Relaxare la plaja si vizitarea sanctuarului pentru elefanti.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 6</h3>
                     <p>Island Hopping - Discover nearby islands.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 7</h3>
                     <p>Relaxation at the resort - Enjoy spa treatments.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 8</h3>
                     <p>Local Market Experience - Shop for souvenirs.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 9</h3>
                     <p>Free day in Phuket - Explore or relax as you wish.</p>
                 </div>
-                <div class="itinerary-card">
+                <div class="destination">
                     <h3>Day 10</h3>
                     <p>Departure - Take wonderful memories home.</p>
                 </div>
