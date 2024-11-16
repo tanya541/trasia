@@ -77,33 +77,35 @@
         }
         .destinations {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .destination {
-            background-color:  #e0e0e0;
+            background-color: #e0e0e0;
             border-radius: 10px;
-            padding: 15px;
-            width: 90%;
-            
+            padding: 20px;
+            width: 300px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .destination img {
             border-radius: 10px;
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
         }
         .destination h3 {
-            margin: 10px 0 5px;
-            color: #2c2c2c;
-            font-size: 1.2em;
+            margin: 15px 0 5px;
+            color: #116466;
+            font-size: 1.5em;
         }
         .destination p {
             color: #666;
-            font-size: 0.9em;
+        }
+        .destination:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         .section h2{
             color:#d9b08c;
@@ -161,7 +163,7 @@
         .menu-overlay {
             display: none; /* Initially hidden */
             flex-direction: column;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(179, 201, 201, 0.9);
             position: fixed;
             top: 0;
             left: 0;
@@ -183,7 +185,7 @@
             align-items: center;
         }
         .menu-overlay nav a {
-            color: #ffffff;
+            color: #116466;
             font-size: 1.2em; /* Made smaller */
             margin: 15px 0;
             text-decoration: none;
@@ -208,6 +210,52 @@
                 font-size: 0.8em;
             }
         }
+                .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .gallery-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .gallery {
+            display: none;
+            text-align: center;
+        }
+        .gallery.active {
+            display: block;
+        }
+        .gallery img {
+            width: 500px;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .gallery h3 {
+            margin: 10px 0;
+            color: #313734;
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .social-icon img {
+            width: 30px; /* Adjust icon size */
+            height: 30px; /* Adjust icon size */
+        }
+
+    
     </style>
 </head>
 
@@ -229,13 +277,13 @@
     </div>
 
     <div class="hero">
-        <h1>Your Dream Honeymoon Awaits!</h1>
+        <h1>Luna de miere perfecta te asteapta!</h1>
         <a class="cta-button" href="#offers">Explore Offers</a>
     </div>
 
     <main>
         <section id="reasons" class="section">
-            <h2>Why Honeymoon in Thailand?</h2>
+            <h2>De ce sa iti petreci luna de miere in Thailanda?</h2>
             <div class="destinations">
                 <div class="destination">
                     <h3>Stunning Beaches</h3>
@@ -269,63 +317,91 @@
         </section>
 
         <section id="Offers" class="section">
-            <h2>Exclusive Offers</h2>
+            <h2>Oferte</h2>
             <div class="destinations">
                 <div class="destination">
                     <img src="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Beach Package">
                     <h3>Beach Getaway</h3>
-                    <p>5 nights in Koh Samui + Spa Package</p>
-                    <a href="hmoon1.html" class="cta-button">Descopera</a>
+                    <p>Krabi + Phi Phi</p>
+                    <a href="honeymoon1.html" class="cta-button">Descopera</a>
                 </div>
                 <div class="destination">
-                    <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Cultural Package">
+                    <img src="https://images.pexels.com/photos/14358508/pexels-photo-14358508.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cultural Package">
                     <h3>Cultural Experience</h3>
-                    <p>7 days in Chiang Mai + Local Tours</p>
-                    <a href="hmoon2.html" class="cta-button">Descopera</a>
+                    <p>Chiang Mai + Krabi</p>
+                    <a href="honeymoon2.html" class="cta-button">Descopera</a>
                 </div>
                 <div class="destination">
-                    <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Adventure Package">
+                    <img src="https://images.pexels.com/photos/15898046/pexels-photo-15898046/free-photo-of-bride-and-groom-kissing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Adventure Package">
                     <h3>Adventure Package</h3>
-                    <p>Island Hopping Tour + Activities</p>
-                    <a href="hmoon3.html" class="cta-button">Descopera</a>
+                    <p>Bangkok + Khao Lak + Krabi</p>
+                    <a href="honeymoon3.html" class="cta-button">Descopera</a>
                 </div>
             </div>
         </section>
 
         <section id="gallery" class="section">
-            <h2>Gallery</h2>
+            <h2>Galerie</h2>
+            <div class="gallery-container">
             <div class="gallery active">
-                <img src="https://cdn.pixabay.com/photo/2015/01/05/15/51/thailand-588323_1280.jpg" alt="Gallery Image 1">
-                <h3>Beautiful Sunset</h3>
+                <img src="https://images.pexels.com/photos/17746130/pexels-photo-17746130/free-photo-of-wat-arun-temple-in-bangkok.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Gallery Image 1">
+                <h3>Ceva fain</h3>
             </div>
             <div class="gallery">
-                <img src="https://cdn.pixabay.com/photo/2016/04/26/11/50/thailand-1356685_1280.jpg" alt="Gallery Image 2">
-                <h3>Serene Beach</h3>
+                <img src="https://images.pexels.com/photos/472309/pexels-photo-472309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Gallery Image 2">
+                <h3>Ceva fain</h3>
             </div>
             <div class="gallery">
-                <img src="https://cdn.pixabay.com/photo/2015/01/05/15/51/thailand-588323_1280.jpg" alt="Gallery Image 3">
-                <h3>Vibrant Market</h3>
+                <img src="https://images.pexels.com/photos/2108831/pexels-photo-2108831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Gallery Image 3">
+                <h3>Ceva fain</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://images.pexels.com/photos/2240361/pexels-photo-2240361.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Image 3">
+                <h3>Ceva fain</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://images.pexels.com/photos/1007657/pexels-photo-1007657.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Image 3">
+                <h3>Ceva fain</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://images.pexels.com/photos/50689/skytrain-thailand-transportation-sky-50689.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Image 3">
+                <h3>Ceva fain</h3>
+            </div>
+            <div class="gallery">
+                <img src="https://images.pexels.com/photos/3314263/pexels-photo-3314263.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Image 3">
+                <h3>Ceva fain</h3>
             </div>
             <button class="prev" onclick="showGallery(-1)">❮</button>
             <button class="next" onclick="showGallery(1)">❯</button>
+            </div>
         </section>
         <section id="Rezerva Acum!" class="section">
             <h2>Rezerva acum!</h2>
-            <p>Fa primul pas catre cea mai speciala vacanta!</p>
+            <p>Fa primul pas catre o luna de miere de neuitat!</p>
             <a href="Booking.html" class="cta-button">Rezerva Acum!</a> <!-- Change "customization.html" to your desired page -->
         </section>  
         <section id="customization" class="section">
-            <h2>Customize Your Honeymoon</h2>
-            <p>Tell us what you're dreaming of! We can tailor your package to make it even more special.</p>
+            <h2>Personalizeaza-ti luna de miere</h2>
+            <p>Spune-ne ce iti doresti si noi va indeplinim visul.</p>
             <a href="customization.html" class="cta-button">Start Customization</a> <!-- Change "customization.html" to your desired page -->
-        </section>        
+        </section>  
+        </div>      
     </main>
 
     <footer>
         <p>© 2024 Trasia Agency. All rights reserved.</p>
-        <p>Contact: +40727300463</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
     </footer>
-
     <script>
         let currentTestimonialIndex = 0;
         const testimonials = document.querySelectorAll('.testimonial');
@@ -348,11 +424,21 @@
 
         let currentGalleryIndex = 0;
 
-        function showGallery(n) {
+        function showGallery(direction) {
+            const galleries = document.querySelectorAll('.gallery');
             galleries[currentGalleryIndex].classList.remove('active');
-            currentGalleryIndex = (currentGalleryIndex + n + galleries.length) % galleries.length;
+
+            currentGalleryIndex += direction;
+
+            if (currentGalleryIndex < 0) {
+                currentGalleryIndex = galleries.length - 1;
+            } else if (currentGalleryIndex >= galleries.length) {
+                currentGalleryIndex = 0;
+            }
+
             galleries[currentGalleryIndex].classList.add('active');
         }
+
     </script>
 </body>
 </html>
