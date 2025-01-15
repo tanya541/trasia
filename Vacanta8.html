@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasia Agency - Explore Thailand</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3531;
+            background-color: #c6c6c6;
+            line-height: 1.6;
+        }
+        header {
+             font-family: 'iBrand', sans-serif;/* Changed to Montserrat */
+             background: rgba(17, 100, 102, 0.8);
+             color: #d9b08c;
+             padding: 20px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             position: sticky;
+             top: 0;
+             z-index: 1000;
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+             transition: background 0.3s;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #d9b08c;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu-overlay {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            background: rgba(179, 201, 201, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0; /* Start transparent */
+        }
+        .menu-overlay.show {
+            display: flex;
+            opacity: 1; /* Fade in */
+        }
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column ;
+            align-items: center ;
+        }
+        .menu-overlay nav a {
+            color: #116466;
+            font-size: 1.2em; /* Made smaller */
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 8px 12px; /* Made smaller */
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-overlay nav a:hover {
+            background: rgba(179, 201, 201, 0.2);
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hero {
+            background: url('https://cdn.pixabay.com/photo/2017/09/02/15/20/thailand-2707555_1280.jpg') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .cta-button {
+            background-color: rgba(217,176,140, 0.8);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background-color: rgba(235, 198, 158, 0.8);
+        }
+        .section {
+            padding: 20px;
+            text-align: center;
+            background-color: #b3c9c9;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .destinations {
+            background-color:#b3c9c9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .destination {
+            background-color:#e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            width: 90%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .destination img {
+            border-radius: 10px;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .destination h3 {
+            margin: 10px 0 5px;
+            color: #af894c;
+            font-size: 1.2em;
+        }
+        .destination p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer {
+            background:  rgba(17,100,102 , 0.8);
+            color:#d9b08c;
+            padding: 20px;
+            text-align: center;
+        }
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .social-icon img {
+            width: 30px; /* Adjust icon size */
+            height: 30px; /* Adjust icon size */
+        }
+
+    </style>
+</head>
+
+<body onload="fadeIn()">
+    <header>
+        <div class="logo">Trasia Agency</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="index.html">Acasa</a>
+            <a href="destinations.html">Destinatii</a>
+            <a href="offers.html">Oferte</a>
+            <a href="Services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="Booking.html">Rezerva acum</a>
+            <a href="about.html">Despre noi</a>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <h1>Descopera Thailanda!</h1>
+        <a class="cta-button" href="offers.html">Oferte</a>
+    </div>
+
+    <main>
+        <section id="reasons" class="section">
+            <h2>De ce sa alegi aceasta oferta?</h2>
+            <div class="destinations">
+                
+                <div class="destination">
+                    <h3>Pattaya</h3>
+                    <p>Phuket atrage turiști cu plajele sale idilice, viața de noapte vibrantă, o gamă variată de activități acvatice, restaurante excelente și cultură locală fascinantă.</p>
+                </div>
+                <div class="destination">
+                    <h3>Phuket</h3>
+                    <p>Insulele Phi Phi sunt renumite pentru peisajele spectaculoase, plajele cu nisip alb, ape cristaline, activități de snorkeling și scuba diving, precum și atmosfera relaxată.</p>
+                </div>
+                <div class="destination">
+                    <h3>Phi Phi</h3>
+                    <p>Insulele Phi Phi sunt renumite pentru peisajele spectaculoase, plajele cu nisip alb, ape cristaline, activități de snorkeling și scuba diving, precum și atmosfera relaxată.</p>
+                </div>
+                <div class="destination">
+                    <h3>Bangkok</h3>
+                    <p>Bangkok oferă o combinație unică de cultură vibrantă, gastronomie delicioasă, temple impresionante, viață de noapte animată și shopping diversificat.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="offers" class="section">
+            <h2>Exclusive Holiday Offers</h2>
+            <div class="destinations">
+                 <div class="destination">
+                    <img src="https://res.cloudinary.com/dpwoqx0xz/image/upload/v1731834993/iStock-689879464_nayo2f.jpg" alt="Bangkok Tour">
+                    <h3>Pattaya</h3>
+                    <p>Sedere 3 nopti </p>
+                </div>
+                <div class="destination">
+                    <img src="https://res.cloudinary.com/dpwoqx0xz/image/upload/v1731833320/iStock-1491859203_ry1lbb.jpg" alt="Phuket Getaway">
+                    <h3>Phuket Escape</h3>
+                    <p>Sedere 5 nopti </p>
+                </div>
+                <div class="destination">
+                    <img src="https://res.cloudinary.com/dpwoqx0xz/image/upload/v1731837122/iStock-1128965769-2_pwcjc5.jpg" alt="Phi Phi Islands">
+                    <h3>Phi Phi Island</h3>
+                    <p>Sedere 1 zi </p>
+                </div>
+                  <div class="destination">
+                    <img src="https://res.cloudinary.com/dpwoqx0xz/image/upload/v1731833737/iStock-2113145841_vafiss.jpg" alt="Bangkok Tour">
+                    <h3>Bangkok </h3>
+                    <p>Sedere 3 nopti </p>
+                </div> 
+            </div>
+        </section>
+
+        <section id="itinerary" class="section">
+            <h2>Itinerariu</h2>
+            <p>Exploreaza Frumusetea Thailandei in 14 zile!</p>
+            <div class="itinerary-cards">
+                <div class="itinerary-card">
+                    <h3>Ziua 1</h3>
+                    <p>• Relaxare la Hotel </p>
+                    <p>• Cina la Nest Bird cu vedere la plaja </p>
+                    <p>• Exploreaza energia vibranta a faimosului <b>Walking Street</b> </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 2</h3>
+                    <p>• Descopera Maretia <b>Sanctuary of Truth</b> </p>
+                    <p>• Exploreaza stilul international la mall <b>Terminal 21 Pattaya</b> </p>
+                    <p>• Relaxare si revitalizare cu ajutorul masajului Thailanezesc </p>
+                    <p>• Participa la spectacolul celebru <b>Tiffany Show</b> </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 3</h3>
+                    <p>• Relaxeaza-te intr-un paradis tropical pe <b>Koh Larn</b> </p>
+                    <p>• Incearca sporturi nautice </p>
+                    <p>• Bucura-te de plaje cu nisip fin si ape cristaline </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 4</h3>
+                    <p>• Sosire la Phuket </p>
+                    <p>• Exploreaza centrul vechi plin de culori </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 5</h3>
+                    <p>• Viziteaza faimoasa statuie <b>Big Buddha</b> </p>
+                    <p>• Admira prietenii giganti la sanctuarul elefantilor </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 6</h3>
+                    <p>• Relaxeaza-te pe plajele superbe din Phuket</p>
+                    <p>• Shopping la pietele locale sau la mallurile de lux </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 7</h3>
+                    <p>• Tur cu barca in insulele vecine orasului.</p>
+                    <p>• Snorkeling in apele cristaline </p>
+                    <p>• Bucura-te de apus si de un fire show pe plaja </p>                
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 8</h3>
+                    <p>• Distreaza-te la <b>Andaman Sea Water Park</b> </p>
+                    <p>• Savureaza cina in jungla inconjurat doar de natura. </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Day 9</h3>
+                    <p>• Viziteaza frumusetea oferita de insulele <b>Phi Phi</b> </p>
+                    <p>• Descopera uimitoarea <b>Maya Bay</b></p>
+                    <p>• Admira <b>Pi Leh Lagoon</b></p>
+                    <p>• Bucura-te de viata marina din apele cristaline cu ajutorul snorkelingului</p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 10</h3>
+                    <p>• Cafe Phuket ofera mancare traditionala, case autentice si o ferma de lotus </p>
+                    <p>• Distreaza-te la un parc tematic </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 11</h3>
+                    <p>• Descopera piete si magazine locale, si savureaza cina pe malul raului </p>                    
+                    <p>• Exploreaza strazile pline de distractie ale Bangkokului </p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 12</h3>
+                    <p>• Viziteaza cea mai mare piata plutitoare din Bangkok</p>
+                    <p>• Exploreaza si incearca <b>Train Market</b> </p>                   
+                    <p>• Incearca <b>China Town</b> pentru un street food delicios</p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 14</h3>
+                    <p>• Viziteaza templele Budiste uimitoare</p>
+                    <p>• Exploreaza palatul regal </p>
+                    <p>• Experimenteaza cel mai luxos mall</p>
+                    <p>• Bucura-te de o cina pe raul <b>Chao Phraya</b></p>
+                </div>
+                <div class="itinerary-card">
+                    <h3>Ziua 14</h3>
+                    <p>• Shopping la un mall cu preturi uimitoare</p>
+                </div>            
+            </div>
+        </section>
+        
+        <style>
+            .itinerary-cards {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .itinerary-card {
+                background-color: #e0e0e0;
+                border-radius: 10px;
+                padding: 15px;
+                width: 90%;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+                text-align: left;
+            }
+            .itinerary-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            .itinerary-card h3 {
+                margin: 0 0 10px;
+                color: #af894c;
+                font-size: 1.5em;
+            }
+            .itinerary-card p {
+                color: #666;
+                font-size: 1em;
+            }
+        </style>
+        <section id="reasons" class="section">
+            <h2>Ce cuprinde vacanta?</h2>
+            <div class="destinations">
+                <div class="destination">
+                    <p>Rezervarea cazarilor + transporturilor + activitatilor.</p>
+                </div>
+                <div class="destination">
+                    <p>Itinerariu personalizat care cuprinde toate detaliile.</p>
+                </div>
+                <div class="destination">
+                    <p>Indicatii si recomandari pentru toate activitatile.</p>
+                </div>
+                <div class="destination">
+                    <p>Recomandari si rezervari restaurante.</p>
+                </div>
+                <div class="destination">
+                    <p>Asistenta non-stop pe toata sederea in Thailanda.</p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="customization" class="section">
+            <h4>Personalizeaza-ti vacanta</h4>
+            <p>Spune-ne ce iti doresti si noi facem sa se intample!</p>
+            <a href="customization.html" class="cta-button">Creaza-ti vacanta!</a>
+        </section>
+        <section id="Booking" class="section">
+            <h4>Rezerva-ti experienta chiar acum!</h4>
+            <a href="Booking.html" class="cta-button">Rezerva acum!</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Trasia Agency. All rights reserved.</p>
+        
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61566412341547" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/1/PNG/256/social_facebook_fb_35.png" alt="Facebook">
+            </a>
+            <a href="https://wa.me/+40771410487" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/622/PNG/512/whatsapp-logo_icon-icons.com_57054.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/trasia.agency/" target="_blank" class="social-icon">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menuOverlay');
+            menuOverlay.classList.toggle('show');
+        }
+
+        function fadeIn() {
+            document.querySelector('.hero').style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
