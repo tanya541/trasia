@@ -264,18 +264,30 @@
             menuOverlay.classList.toggle('show');
         }
     </script>
-    <script>
-    window.onload = function() {
-        // Get the query parameter "destination"
-        const urlParams = new URLSearchParams(window.location.search);
-        const destination = urlParams.get('destination'); // Get the value of 'destination'
-
-        // If a destination is passed in the URL, set it as the selected option
-        if (destination) {
-            document.getElementById('destination').value = destination; // Pre-fill the destination input
-        }
-    };
-    </script>
+    <script> 
+            document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the query string from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+        
+            // Get the destination from the query parameter
+            const destination = urlParams.get('destination');
+        
+            // If a destination is specified in the URL, set it as the selected option
+            if (destination) {
+                const destinationField = document.getElementById('destination'); // Get the select element
+                const options = destinationField.options;
+        
+                // Loop through each option in the select dropdown and check if it matches the destination
+                for (let option of options) {
+                    // Compare the option value with the destination parameter
+                    if (option.value === destination) {
+                        option.selected = true; // Select the option if it matches
+                        break; // Exit the loop once the matching option is found
+                    }
+                }
+            }
+        });
+</script>
 
 </body>
 </html>
