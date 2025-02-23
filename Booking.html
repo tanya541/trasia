@@ -264,5 +264,18 @@
             menuOverlay.classList.toggle('show');
         }
     </script>
+    <script>
+    window.onload = function() {
+        // Get the query parameter "destination"
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('destination'); // Get the value of 'destination'
+
+        // If a destination is passed in the URL, set it as the selected option
+        if (destination) {
+            document.getElementById('destination').value = destination; // Pre-fill the destination input
+        }
+    };
+    </script>
+
 </body>
 </html>
